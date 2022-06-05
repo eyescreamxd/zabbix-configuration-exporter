@@ -37,3 +37,7 @@ with ExporterRunner(url='http://<IP:PORT>', user='Zabbix', password='zabbix') as
     zapi.configuration_export(ConfigurationType.TEMPLATES, FileTypes.JSON)
     zapi.configuration_export(ConfigurationType.HOSTS, FileTypes.JSON)
 ```
+
+TODO:
+- [ ] Custom user path to export files to
+- [ ] Add tests
