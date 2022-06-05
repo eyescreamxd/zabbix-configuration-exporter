@@ -40,4 +40,5 @@ with ExporterRunner(url='http://<IP:PORT>', user='Zabbix', password='zabbix') as
 
 TODO:
 - [ ] Custom user path to export files to
+- [ ] Add examples
 - [ ] Add tests
