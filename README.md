@@ -33,7 +33,7 @@ from zabbix_exporter import ExporterRunner, FileTypes, ConfigurationType
 with ExporterRunner(url='http://<IP:PORT>', user='Zabbix', password='zabbix') as zapi:
     # export all templates and hosts in json format
     # creates exported_files folder in current working directory
-    # and two sub-folders with names  
+    # and two sub-folders with names of requested configuration types
     zapi.configuration_export(ConfigurationType.TEMPLATES, FileTypes.JSON)
     zapi.configuration_export(ConfigurationType.HOSTS, FileTypes.JSON)
 ```
