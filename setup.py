@@ -9,6 +9,6 @@ setup(
     version='0.1',
     packages=['zabbix_exporter'],
     install_requires=[
-        'pyzabbix'
+        'py-zabbix'
     ],
 )
