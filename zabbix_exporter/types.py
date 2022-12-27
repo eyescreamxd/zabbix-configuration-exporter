@@ -29,4 +29,4 @@ class ConfigurationType(Enum):
     MEDIATYPES = MethodMapping('mediaTypes', 'mediatype.get', 'mediatypeid')
     MAPS = MethodMapping('maps', 'map.get', 'sysmapid')
     IMAGES = MethodMapping('images', 'image.get', 'imageid')
-    GROUPS = MethodMapping('groups', 'hostgroup.get', 'groupid')
+    HOSTGROUPS = MethodMapping('hostgroups', 'hostgroup.get', 'groupid')
