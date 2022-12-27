@@ -11,20 +11,19 @@ class ExporterRunner(ZabbixAPI):
 
     def _get_type_ids(self, method: ConfigurationType) -> [Entry]:
         """
-        Prepare list of Entry objects with desired configuration names and ids
+        Prepare list of Entry objects with templates names and ids
         :return: Sorted alphabetic List of Entry objects
         """
         templates = self.do_request(method.value.method)
         return sorted([Entry(i.get('name'), i.get(method.value.id_field)) for i in templates.get('result')])
 
     def _get_configuration(self, configuration_type: ConfigurationType, configuration_id: Entry,
-                           file_extension: FileTypes) -> str:
+                           file_extension: FileTypes):
         """
-        Get single entry configuration via Zabbix API with id
-        :param configuration_type: ConfigurationType object e.g. ConfigurationType.HOSTS
-        :param configuration_id: Entry object
-        :param file_extension: FileTypes object e.g. FileTypes.YAML
-        :return: Zabbix API response with configuration data as a serialized string
+
+        :param configuration_id:
+        :param file_extension:
+        :return:
         """
         return self.configuration.export(format=file_extension.value,
                                          prettyprint=True,
@@ -32,15 +31,7 @@ class ExporterRunner(ZabbixAPI):
 
     @staticmethod
     def _save_file(configuration_type: ConfigurationType, filename: Entry,
-                   file_extension: FileTypes, content: str) -> None:
-        """
-        Save configuration data as a serialized string as file with desired format
-        :param configuration_type: ConfigurationType object e.g. ConfigurationType.HOSTS
-        :param filename: Entry object
-        :param file_extension: FileTypes object
-        :param content: Zabbix API response configuration data as a serialized string as file with desired format
-        :return: None
-        """
+                   file_extension: FileTypes, content: str):
         folder = Path(os.path.join(os.getcwd(), 'exported_files/' + configuration_type.value.name))
         folder.mkdir(exist_ok=True, parents=True)
         # print(Path(os.path.join(folder, filename.name + '.' + file_extension.value)))
@@ -53,13 +44,7 @@ class ExporterRunner(ZabbixAPI):
                 template_file.write(json.dumps(content))
 
     def configuration_export(self, configuration_type: ConfigurationType,
-                             file_extension: FileTypes = FileTypes.YAML) -> None:
-        """
-        Main function to export data
-        :param configuration_type: ConfigurationType object
-        :param file_extension: FileTypes object. Default YAML
-        :return: None
-        """
+                             file_extension: FileTypes = FileTypes.YAML):
         entries = self._get_type_ids(configuration_type)
         for entry in entries:
             content = self._get_configuration(configuration_type, entry, file_extension)
