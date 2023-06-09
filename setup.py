@@ -6,7 +6,7 @@ setup(
     name='zabbix_configuration_exporter',
     description='Zabbix API wrapper to save configuration to files',
     author='eyescreamxd',
-    version='0.1',
+    version='0.2',
     packages=['zabbix_exporter'],
     install_requires=[
         'py-zabbix'
