@@ -22,11 +22,12 @@ class MethodMapping(NamedTuple):
 
 class ConfigurationType(Enum):
     """
-    hosts, templates, mediaTypes, maps, images, groups
+    hosts, templates, templateGroups, mediaTypes, maps, images, groups
     """
     HOSTS = MethodMapping('hosts', 'host.get', 'hostid')
     TEMPLATES = MethodMapping('templates', 'template.get', 'templateid')
+    TEMPLATEGROUPS = MethodMapping('template_groups', 'templategroup.get', 'groupid')
     MEDIATYPES = MethodMapping('mediaTypes', 'mediatype.get', 'mediatypeid')
     MAPS = MethodMapping('maps', 'map.get', 'sysmapid')
     IMAGES = MethodMapping('images', 'image.get', 'imageid')
-    GROUPS = MethodMapping('groups', 'hostgroup.get', 'groupid')
+    GROUPS = MethodMapping('host_groups', 'hostgroup.get', 'groupid')
